@@ -1,0 +1,16 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.navbar-color {
+    background-color: #3751df;
+    color: white;
+}
+
+.mat-btn {
+    border: transparent;
+    background-color: transparent;
+    font-size: 23px;
+    color: white;
+    text-decoration: none;
+}

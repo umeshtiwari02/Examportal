@@ -1,0 +1,24 @@
+<mat-card>
+    <h1 class="ml20">All categories</h1>
+    <mat-list>
+        <ng-container *ngFor="let c of categories">
+            <mat-list-item>
+                <mat-icon matListItemIcon>category</mat-icon>
+                <div matListItemTitle>{{ c.title }}</div>
+                <div matListItemLine>{{ c.description }}</div>
+
+                <!-- Buttons aligned to the right -->
+                <div matListItemMeta>
+                    <button (click)="deleteCategory(c.cid)" class="deleteBtn mr20" mat-raised-button>Delete</button>
+                    <button [routerLink]="'/admin/category/' + c.cid" mat-flat-button>Update</button>
+                </div>
+
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </ng-container>
+    </mat-list>
+
+    <div class="container text-center mt20 mb20">
+        <button routerLink="/admin/add-category" mat-flat-button>Add New Category</button>
+    </div>
+</mat-card>

@@ -1,0 +1,16 @@
+.text-truncate {
+    display: block;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.header-image {
+    background-image: url('../../../../assets/quizzes.png');
+    background-size: cover;
+}
+
+.startBtn {
+    color: #ff66cd !important;
+}

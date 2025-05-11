@@ -1,0 +1,13 @@
+.full-width {
+    width: 100%;
+}
+
+.mat-submit {
+    background-color: rgb(63, 63, 244) !important;
+    color: white !important;
+}
+
+.mat-reset {
+    background-color: rgb(236, 179, 74) !important;
+    color: white !important;
+}

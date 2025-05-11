@@ -1,0 +1,46 @@
+.margin {
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+
+/* These code are used for showing the quiz result. */
+/* print button  */
+.printBtn {
+    background-color: purple !important;
+    color: white !important;
+}
+
+/* home button */
+.homeBtn {
+    background-color: rgb(80, 215, 246) !important;
+    color: black !important;
+}
+
+/* Center the entire card header */
+.header-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 16px; /* Space for underline */
+}
+
+/* Style the h1 */
+.result-header {
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px; /* Space between text and underline */
+    margin-bottom: 20px;
+}
+
+/* Create the underline effect */
+.result-header::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100px; /* Adjust length of underline */
+    height: 3px;
+    background: #3f51b5; /* Material primary color */
+}

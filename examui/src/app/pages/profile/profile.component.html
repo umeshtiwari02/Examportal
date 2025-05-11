@@ -1,0 +1,53 @@
+<mat-card *ngIf="user">
+    <h1 class="ml20">Your Profile Details</h1>
+    <mat-card-content>
+
+        <div class="bootstrap-wrapper">
+            <div class="container mb20">
+
+                <div class="container text-center">
+                    <img src="https://images.icon-icons.com/1378/PNG/512/avatardefault_92824.png" class="profile-image"
+                        alt="profile image">
+
+                    <h1 class="mt20">{{ user.firstName }} {{ user.lastName }}</h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <!-- User details -->
+                        <table class="table text-center">
+                            <tr>
+                                <td>Username</td>
+                                <td>{{user.username }}</td>
+                            </tr>
+                            <tr>
+                                <td>UserId</td>
+                                <td>EXAM{{ user.id }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone No.</td>
+                                <td>{{ user.phone }}</td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>{{ user.authorities[0].authority }}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+    <mat-card-actions style="justify-content: center;" class="mt20 mb20">
+        <button mat-raised-button class="mr20">Update</button>
+        <button mat-flat-button>Reset</button>
+    </mat-card-actions>
+</mat-card>
