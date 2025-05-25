@@ -1,0 +1,49 @@
+<mat-card class="update-form-container">
+    <h1 class="form-title">Update User Profile</h1>
+
+    <div class="form-wrapper">
+        <form *ngIf="user" (ngSubmit)="updateUserDetails()">
+            <!-- Username -->
+            <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Username</mat-label>
+                <input [(ngModel)]="user.username" disabled type="text" name="username" matInput>
+            </mat-form-field>
+
+            <!-- FirstName -->
+            <mat-form-field appearance="fill" class="form-field">
+                <mat-label>First Name</mat-label>
+                <input [(ngModel)]="user.firstName" required type="text" name="firstName" matInput>
+            </mat-form-field>
+
+            <!-- LastName -->
+            <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Last Name</mat-label>
+                <input [(ngModel)]="user.lastName" required type="text" name="lastName" matInput>
+            </mat-form-field>
+
+            <!-- Email -->
+            <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Email</mat-label>
+                <input [(ngModel)]="user.email" required type="email" name="email" matInput>
+            </mat-form-field>
+
+            <!-- Phone -->
+            <mat-form-field appearance="fill" class="form-field">
+                <mat-label>Phone</mat-label>
+                <input [(ngModel)]="user.phone" required type="text" name="phone" matInput>
+            </mat-form-field>
+
+            <!-- Active Status -->
+            <div class="status-toggle">
+                <mat-slide-toggle disabled [(ngModel)]="user.enabled" name="active">
+                    {{ user.enabled ? 'Active' : 'Inactive' }}
+                </mat-slide-toggle>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="button-container">
+                <button type="submit" mat-raised-button color="primary">Update</button>
+            </div>
+        </form>
+    </div>
+</mat-card>
