@@ -1,14 +1,155 @@
-.profile-image {
-    max-width: 150px;
-    max-height: 150px;
+/* Profile Card Container */
+.profile-card {
+    max-width: 800px;
+    margin: 1.5rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+    /* box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); */
 }
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
+/* Header Section */
+.profile-header {
+    background: linear-gradient(135deg, #3f51b5 0%, #2196f3 100%);
+    padding: 1.5rem;
+    color: white;
 }
 
-.table tr td {
-    padding: 15px 20px;
-    border: .5px solid #cccbcb;
+.profile-title {
+    margin: 0;
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+
+.profile-image-container {
+    text-align: center;
+    padding: 2rem 0;
+    position: relative;
+}
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.profile-name {
+    margin: 1rem 0 0rem;
+    font-weight: 500;
+    color: #333;
+}
+
+/* Role */
+.profile-badge {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+/* Role */
+.badge-user {
+    background-color: #4caf50;
+    color: white;
+    font-weight: bold;
+}
+
+.badge-admin {
+    background-color: #ff9800;
+    color: white;
+}
+
+.profile-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: separate;
+    /* border-spacing: 0 px; */
+    font-size: 16px;
+}
+
+.profile-table td {
+    padding: 12px 8px;
+    vertical-align: middle;
+}
+
+.profile-table mat-icon {
+    vertical-align: middle;
+    color: #3f51b5;
+}
+
+.active-text {
+    color: green;
+    font-weight: bold;
+}
+
+.inactive-text {
+    color: red;
+    font-weight: bold;
+}
+
+.active-icon {
+    color: green;
+}
+
+.inactive-icon {
+    color: red;
+}
+
+/* Button style */
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Button style */
+.action-button {
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+/* For mobile screen */
+@media (max-width: 768px) {
+
+    .profile-card {
+        max-width: 90%;
+        margin-bottom: 100px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .action-button {
+        margin-bottom: 10px;
+        width: 95%;
+    }
+
+    /* Header Section */
+    .profile-header {
+        background: linear-gradient(135deg, #3f51b5 0%, #2196f3 100%);
+        padding: 1rem;
+        color: white;
+    }
+
+    .profile-avatar {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .profile-title {
+        margin: 0;
+        font-weight: 500;
+        font-size: 1.5rem;
+    }
+
+
 }

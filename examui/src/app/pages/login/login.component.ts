@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { SharedMaterialModule } from '../../shared-material.module';
 
+
 @Component({
   selector: 'app-login',
   imports: [
@@ -61,7 +62,7 @@ export class LoginComponent {
               this.login.loginStatusSubject.next(true);
             }
             else if (this.login.getUserRole() == "NORMAL") {
-              // normal user-dashboar
+              // normal user-dashboard
               // window.location.href = "/user-dashboard";
               this.router.navigate(["user-dashboard/0"]);
               this.login.loginStatusSubject.next(true);
@@ -69,22 +70,34 @@ export class LoginComponent {
             else {
               this.login.logout();
             }
-
+          },
+          (userError) => {
+            this.snack.open("Failed to fetch user details. Please try again.", "OK", {
+              duration: 3000
+            });
+            this.login.logout();
           }
         );
 
-
       },
       (error) => {
-        console.log('Error');
-        console.log(error);
-        this.snack.open("Invalid Details. Try again!!", "Ok", {
+
+        let errorMessage = "Invalid Details. Try again!!";
+
+        // Handle different error cases
+        if (error.status === 0) {
+          errorMessage = "Server is not responding. Please try again later.";
+        } else if (error.status === 401) {
+          errorMessage = "Invalid username or password!";
+        } else if (error.status >= 500) {
+          errorMessage = "Server error occurred. Please contact support.";
+        }
+
+        this.snack.open(errorMessage, "OK", {
           duration: 3000
         });
       }
     );
-
-
 
   }
 }

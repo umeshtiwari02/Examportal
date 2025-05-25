@@ -1,12 +1,67 @@
 .example-header-image {
-    background-image: url('../../../../assets/quiz.png');
-    background-size: cover;
+  background-image: url('../../../../assets/quiz.png');
+  background-size: cover;
 }
 
 .statusActive {
-    background-color: rgb(157, 252, 182) !important;
+  background-color: rgb(189, 246, 204) !important;
+  border-radius: 10px;
 }
 
 .deleteBtn {
-    background-color: red !important;
+  background-color: red !important;
+}
+
+
+/* Mobile styles (only applies below 768px) */
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+  }
+
+  .sidebar-card {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    z-index: 999;
+    transition: left 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .sidebar-card.mobile-visible {
+    left: 0;
+  }
+
+  /* Prevent content overlapping */
+  .content-container {
+    transition: margin-left 0.3s ease;
+  }
+
+  .content-container.mobile-padding {
+    margin-left: 300px;
+  }
+
+  /* Adjust card spacing for mobile */
+  mat-card {
+    margin: 10px !important;
+    width: calc(100% - 20px);
+  }
+
+  /* Stack buttons vertically on small screens */
+  mat-card-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  mat-card-actions button {
+    margin-left: 0 !important;
+    flex: 1 1 120px;
+  }
 }

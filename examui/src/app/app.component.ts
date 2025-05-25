@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 
 import { NgxUiLoaderService, NgxUiLoaderModule } from "ngx-ui-loader";
+import { FooterComponent } from "./components/footer/footer.component";
 
 
 @Component({
@@ -10,8 +11,9 @@ import { NgxUiLoaderService, NgxUiLoaderModule } from "ngx-ui-loader";
   imports: [
     RouterOutlet,
     NavbarComponent,
-    NgxUiLoaderModule
-  ],
+    NgxUiLoaderModule,
+    FooterComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

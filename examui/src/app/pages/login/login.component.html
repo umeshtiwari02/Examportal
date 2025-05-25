@@ -3,10 +3,10 @@
         <div class="row mt20">
             <div class="col-md-6 offset-md-3">
 
-                <mat-card>
+                <mat-card class="card">
                     <div class="m20">
                         <div class="container text-center">
-                            <img src="logo.png" alt="Logo" height="120" width="120">
+                            <img src="logo.png" alt="Login-Image" height="120" width="120">
                         </div>
 
                         <h2 class="text-center">Login Here !!</h2>
@@ -15,25 +15,30 @@
                             <!-- Username field -->
                             <mat-form-field class="full-width" appearance="outline">
                                 <mat-label>Username</mat-label>
-                                <input
-                                [(ngModel)]="loginData.username"
-                                required name="username" matInput placeholder="Enter your username">
+                                <input [(ngModel)]="loginData.username" class="mat-input" required name="username"
+                                    matInput placeholder="Enter your username">
+                                <mat-icon matSuffix>person</mat-icon>
                                 <mat-hint>Enter a valid username!!</mat-hint>
                             </mat-form-field>
 
                             <!-- Password field -->
                             <mat-form-field class="full-width mt20" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input
-                                [(ngModel)]="loginData.password"
-                                type="password" required name="password" matInput
-                                    placeholder="Enter your password">
+                                <input [(ngModel)]="loginData.password" class="mat-input" type="password" required
+                                    name="password" matInput placeholder="Enter your password">
+                                <mat-icon matSuffix>lock</mat-icon>
                             </mat-form-field>
 
                             <!-- Buttons -->
-                            <div class="container text-center" style="padding-bottom: 50px;">
+                            <div class="container text-center mt10 mb20">
                                 <button type="submit" mat-raised-button class="mat-submit">Login</button>
                                 <button type="reset" mat-raised-button class="mat-reset ml10">Reset</button>
+                            </div>
+
+                            <!-- SignUp -->
+                            <div class="text-center">
+                                Don't have an account? <a routerLink="/signup" class="mat-btn">Sign
+                                    Up</a>
                             </div>
                         </form>
                     </div>

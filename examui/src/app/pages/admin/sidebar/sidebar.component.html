@@ -1,4 +1,4 @@
-<mat-card>
+<!-- <mat-card>
     <mat-action-list>
         <div mat-subheader>Menu</div>
 
@@ -8,20 +8,62 @@
         <button mat-list-item routerLink="/admin/profile">
             <mat-icon mat-list-icon style="vertical-align: middle;">account_circle</mat-icon> Profile</button>
 
-        <button mat-list-item routerLink="/admin/categories">
-            <mat-icon mat-list-icon style="vertical-align: middle;">list</mat-icon> Categories</button>
-
         <button mat-list-item routerLink="/admin/add-category">
             <mat-icon mat-list-icon style="vertical-align: middle;">add_circle_outline</mat-icon> Add
-            Categories</button>
-
-        <button mat-list-item routerLink="/admin/quizzes">
-            <mat-icon mat-list-icon style="vertical-align: middle;">quiz</mat-icon> Quizzes</button>
+            Category</button>
 
         <button mat-list-item routerLink="/admin/add-quiz">
             <mat-icon mat-list-icon style="vertical-align: middle;">add</mat-icon> Add Quiz</button>
 
+        <button mat-list-item routerLink="/admin/categories">
+            <mat-icon mat-list-icon style="vertical-align: middle;">list</mat-icon> Categories</button>
+
+        <button mat-list-item routerLink="/admin/quizzes">
+            <mat-icon mat-list-icon style="vertical-align: middle;">quiz</mat-icon> Quizzes</button>
+
+
+
         <button mat-list-item (click)="logout()">
             <mat-icon mat-list-icon style="vertical-align: middle;">logout</mat-icon> Logout</button>
+
+    </mat-action-list>
+</mat-card> -->
+
+
+<!-- Mobile toggle button (only visible on screens < 768px) -->
+<button *ngIf="!sidebarVisible" mat-icon-button class="mobile-menu-button" (click)="toggleSidebar()"
+    aria-label="Toggle menu">
+    <mat-icon>menu</mat-icon>
+</button>
+
+<!-- Original sidebar with mobile visibility control -->
+<mat-card class="sidebar-card" [class.mobile-visible]="sidebarVisible">
+    <mat-action-list>
+        <div mat-subheader>Menu</div>
+
+        <button mat-list-item routerLink="/admin" class="sidebar-item" (click)="closeSidebarOnMobile()">
+            <mat-icon class="item-icon" mat-list-icon style="vertical-align: middle;">home</mat-icon>
+            <span class="item-text">Home</span>
+        </button>
+
+        <button mat-list-item routerLink="/admin/add-category" class="sidebar-item" (click)="closeSidebarOnMobile()">
+            <mat-icon class="item-icon" mat-list-icon style="vertical-align: middle;">add_circle_outline</mat-icon>
+            <span class="item-text">Add Category</span>
+        </button>
+
+        <button mat-list-item routerLink="/admin/add-quiz" class="sidebar-item" (click)="closeSidebarOnMobile()">
+            <mat-icon class="item-icon" mat-list-icon style="vertical-align: middle;">add</mat-icon>
+            <span class="item-text">Add Quiz</span>
+        </button>
+
+        <button mat-list-item routerLink="/admin/categories" class="sidebar-item" (click)="closeSidebarOnMobile()">
+            <mat-icon class="item-icon" mat-list-icon style="vertical-align: middle;">list</mat-icon>
+            <span class="item-text">Categories</span>
+        </button>
+
+        <button mat-list-item routerLink="/admin/quizzes" class="sidebar-item" (click)="closeSidebarOnMobile()">
+            <mat-icon class="item-icon" mat-list-icon style="vertical-align: middle;">quiz</mat-icon>
+            <span class="item-text">Quizzes</span>
+        </button>
     </mat-action-list>
 </mat-card>

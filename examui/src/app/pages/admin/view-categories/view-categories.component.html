@@ -1,5 +1,5 @@
-<mat-card>
-    <h1 class="ml20">All categories</h1>
+<mat-card style="margin-bottom: 50px;">
+    <h1 class="ml10">All categories</h1>
     <mat-list>
         <ng-container *ngFor="let c of categories">
             <mat-list-item>
@@ -8,7 +8,7 @@
                 <div matListItemLine>{{ c.description }}</div>
 
                 <!-- Buttons aligned to the right -->
-                <div matListItemMeta>
+                <div matListItemMeta class="buttons">
                     <button (click)="deleteCategory(c.cid)" class="deleteBtn mr20" mat-raised-button>Delete</button>
                     <button [routerLink]="'/admin/category/' + c.cid" mat-flat-button>Update</button>
                 </div>

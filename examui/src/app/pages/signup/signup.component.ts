@@ -70,7 +70,7 @@ export class SignupComponent {
     this.userService.addUser(this.user).subscribe(
       (data: any) => {
         // success
-        Swal.fire("Success", "User id " + data.id + " registered successfully.", "success");
+        Swal.fire("Success", "User registered successfully.", "success");
         // console.log(data);
       },
       (error) => {

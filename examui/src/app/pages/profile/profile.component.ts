@@ -6,20 +6,29 @@ import { SharedMaterialModule } from '../../shared-material.module';
 @Component({
   selector: 'app-profile',
   imports: [
-    SharedMaterialModule
+    SharedMaterialModule,
+
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent implements OnInit {
 
-  private login = inject(LoginService)
+  public login = inject(LoginService)
 
   user: any;
 
   ngOnInit(): void {
-    this.user = this.login.getUser();
-  }
+    // this.user = this._login.getUser();
 
+    this.login.getCurrentUser().subscribe(
+      (data: any) => {
+        this.user = data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
 }

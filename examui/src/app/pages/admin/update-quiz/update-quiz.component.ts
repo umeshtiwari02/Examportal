@@ -35,7 +35,7 @@ export class UpdateQuizComponent implements OnInit {
     this._quiz.getQuiz(this.qid).subscribe(
       (data: any) => {
         this.quiz = data;
-        // console.log(this.quiz);
+        console.log(this.quiz);
       },
       (error) => {
         // console.log(error);

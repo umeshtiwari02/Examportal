@@ -1,53 +1,100 @@
-<mat-card *ngIf="user">
-    <h1 class="ml20">Your Profile Details</h1>
+<mat-card *ngIf="user" class="profile-card mat-elevation-z8">
+    <div class="profile-header">
+        <h1 class="profile-title">Your Profile Details</h1>
+    </div>
+
     <mat-card-content>
+        <div class="profile-content">
+            <div class="profile-image-container">
+                <img src="https://images.icon-icons.com/1378/PNG/512/avatardefault_92824.png" class="profile-avatar"
+                    alt="profile image">
+                <h1 class="profile-name">{{ user.firstName }} {{ user.lastName }}</h1>
+            </div>
 
-        <div class="bootstrap-wrapper">
-            <div class="container mb20">
-
-                <div class="container text-center">
-                    <img src="https://images.icon-icons.com/1378/PNG/512/avatardefault_92824.png" class="profile-image"
-                        alt="profile image">
-
-                    <h1 class="mt20">{{ user.firstName }} {{ user.lastName }}</h1>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-10 offset-md-1">
-                        <!-- User details -->
-                        <table class="table text-center">
-                            <tr>
-                                <td>Username</td>
-                                <td>{{user.username }}</td>
-                            </tr>
-                            <tr>
-                                <td>UserId</td>
-                                <td>EXAM{{ user.id }}</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>{{ user.email }}</td>
-                            </tr>
-                            <tr>
-                                <td>Phone No.</td>
-                                <td>{{ user.phone }}</td>
-                            </tr>
-                            <tr>
-                                <td>Role</td>
-                                <td>{{ user.authorities[0].authority }}</td>
-                            </tr>
-                            <tr>
-                                <td>Status</td>
-                                <td>{{ user.enabled ? "ACTIVE" : "NOTACTIVE" }}</td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+            <div class="profile-details text-center">
+                <table class="profile-table">
+                    <tr>
+                        <td><mat-icon>person</mat-icon></td>
+                        <td>Username</td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>person_outline</mat-icon></td>
+                        <td>First Name</td>
+                        <td>{{ user.firstName }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>family_restroom</mat-icon></td>
+                        <td>Last Name</td>
+                        <td>{{ user.lastName }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>fingerprint</mat-icon></td>
+                        <td>User ID</td>
+                        <td>EXAM{{ user.id }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>email</mat-icon></td>
+                        <td>Email</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>phone</mat-icon></td>
+                        <td>Phone</td>
+                        <td>{{ user.phone || 'Not provided' }}</td>
+                    </tr>
+                    <tr>
+                        <td><mat-icon>verified_user</mat-icon></td>
+                        <td>Role</td>
+                        <td>
+                            <div class="profile-badge" [ngClass]="{
+                                'badge-admin': login.getUserRole() === 'ADMIN',
+                                'badge-user': login.getUserRole() === 'NORMAL'
+                            }">
+                                {{ login.getUserRole() }}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-icon
+                                [ngClass]="{ 'active-icon': user.enabled, 'inactive-icon': !user.enabled }">circle</mat-icon>
+                        </td>
+                        <td>Status</td>
+                        <td>
+                            <span [ngClass]="{
+                          'active-text': user.enabled,
+                          'inactive-text': !user.enabled
+                      }">
+                                {{ user.enabled ? 'ACTIVE' : 'INACTIVE' }}
+                            </span>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
+
     </mat-card-content>
-    <mat-card-actions style="justify-content: center;" class="mt20 mb20">
-        <button mat-raised-button class="mr20">Update</button>
-        <button mat-flat-button>Reset</button>
+
+    <mat-card-actions class="profile-actions">
+        <!-- User -->
+        <button *ngIf="login.getUserRole() === 'NORMAL'" mat-raised-button [routerLink]="'/update-user/'+user.username"
+            class="action-button">
+            <mat-icon>edit</mat-icon> Update Profile
+        </button>
+        <button *ngIf="login.getUserRole() === 'NORMAL'" mat-stroked-button
+            [routerLink]="'/update-password/'+user.username" class="action-button">
+            <mat-icon>security</mat-icon> Update Password
+        </button>
+
+        <!-- Admin -->
+        <button *ngIf="login.getUserRole() === 'ADMIN'" mat-raised-button
+            [routerLink]="'/admin/update-user/'+user.username" class="action-button">
+            <mat-icon>edit</mat-icon> Update Profile
+        </button>
+        <button *ngIf="login.getUserRole() === 'ADMIN'" mat-stroked-button
+            [routerLink]="'/admin/update-password/'+user.username" class="action-button">
+            <mat-icon>security</mat-icon> Update Password
+        </button>
     </mat-card-actions>
 </mat-card>

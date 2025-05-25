@@ -1,11 +1,3 @@
-.text-truncate {
-    display: block;
-    white-space: nowrap;
-    width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
 .header-image {
     background-image: url('../../../../assets/quizzes.png');
     background-size: cover;
@@ -13,4 +5,96 @@
 
 .startBtn {
     color: #ff66cd !important;
+}
+
+
+/* Responsive grid adjustments */
+.bootstrap-wrapper {
+    padding: 0 15px;
+}
+
+.quiz-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0 10px;
+}
+
+/* Text truncation for card content */
+
+.truncate-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.truncate-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 60px;
+}
+
+/* Card actions responsive layout */
+.card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    /* Pushes actions to bottom */
+    padding: 0 16px 16px !important;
+}
+
+.action-button {
+    flex: 1;
+    min-width: 80px;
+}
+
+.info-button {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .quiz-card {
+        margin: 0 5px;
+    }
+
+    .card-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .action-button,
+    .info-button {
+        width: 100%;
+        min-height: 30px;
+    }
+
+    .truncate-title {
+        max-width: 120px;
+    }
+
+    .truncate-subtitle {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+    .col-sm-6 {
+        padding: 0 5px;
+    }
+
+    .truncate-title {
+        max-width: 120px;
+    }
+
+    .truncate-subtitle {
+        max-width: 100px;
+    }
 }

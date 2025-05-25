@@ -1,26 +1,48 @@
-<!-- <p>navbar works!</p> -->
-
 <mat-toolbar class="navbar-color">
-    <a routerLink="/" mat-icon-button class="mat-btn">
+    <a *ngIf="!isLoggedIn" routerLink="/" mat-icon-button class="mat-btn" style="margin-right: -32px;">
         <mat-icon>menu_book</mat-icon>
     </a>
-    <span class="ml20">Examportal</span>
+    <span class="mobile-size">Examportal</span>
     <span class="example-spacer"></span>
 
-    <a *ngIf="!isLoggedIn" routerLink="/login" class="mat-btn">
-        Login
+    <a *ngIf="!isLoggedIn && !isLoginPage()" routerLink="/login" class="mat-btn">
+        Login <mat-icon style="vertical-align: middle">login</mat-icon>
     </a>
 
-    <a *ngIf="!isLoggedIn" routerLink="/signup" class="ml20 mat-btn">
-        Register
+    <a *ngIf="!isLoggedIn && !isRegisterPage()" routerLink="/signup" class="ml20 mat-btn">
+        Register <mat-icon style="vertical-align: middle;">person_add</mat-icon>
     </a>
 
-    <a *ngIf="isLoggedIn" (click)="logout()" href="" class="mat-btn">
-        Logout
-    </a>
+    <!-- Profile dropdown section -->
+    <div *ngIf="isLoggedIn" class="profile-menu-container">
 
-    <a routerLink="/admin/profile" *ngIf="isLoggedIn" class="mat-btn ml20">
-        {{ login.getUser().username }}
-    </a>
+        <button mat-button (click)="toggleProfileMenu()" class="profile-button">
+            <mat-icon style="vertical-align: middle;">account_circle</mat-icon>
+            {{ login.getUser().username }}
+            <mat-icon>{{ profileMenuOpen ? 'arrow_drop_up' : 'arrow_drop_down' }}</mat-icon>
+        </button>
+
+        <div class="profile-dropdown" *ngIf="profileMenuOpen">
+
+            <!-- Admin Profile Link (shown only for admin) -->
+            <a *ngIf="login.getUserRole() === 'ADMIN'" routerLink="/admin/profile" class="dropdown-item"
+                (click)="profileMenuOpen = false">
+                <mat-icon mat-list-icon style="vertical-align: middle;">account_circle</mat-icon>
+                Profile
+            </a>
+
+            <!-- User Profile Link (shown only for normal user) -->
+            <a *ngIf="login.getUserRole() === 'NORMAL'" routerLink="/user-profile" class="dropdown-item"
+                (click)="profileMenuOpen = false">
+                <mat-icon mat-list-icon style="vertical-align: middle;">account_circle</mat-icon>
+                Profile
+            </a>
+
+            <a href="" class="dropdown-item" (click)="logout(); profileMenuOpen = false">
+                <mat-icon mat-list-icon style="vertical-align: middle;">logout</mat-icon>
+                Logout
+            </a>
+        </div>
+    </div>
 
 </mat-toolbar>

@@ -11,3 +11,30 @@
     background-color: rgb(236, 179, 74) !important;
     color: white !important;
 }
+
+.bootstrap-wrapper {
+    background: linear-gradient(135deg, #5e6db0 0%, #865fac, #65cf95, #5e6db0, #a959a2 100%);
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(12px);
+    border-radius: 15px !important;
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+    /* color: white; */
+}
+
+.mat-input {
+    color: rgb(231, 228, 228) !important;
+}
+
+.mat-btn {
+    border: transparent;
+    background-color: transparent;
+    font-size: 20px;
+    color: blue;
+    text-decoration: none;
+}

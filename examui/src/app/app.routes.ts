@@ -20,6 +20,8 @@ import { UpdateCategoryComponent } from './pages/admin/update-category/update-ca
 import { LoadQuizComponent } from './pages/user/load-quiz/load-quiz.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 import { StartComponent } from './pages/user/start/start.component';
+import { UpdateUserComponent } from './pages/update-user/update-user.component';
+import { UpdatePasswordComponent } from './pages/update-password/update-password.component';
 
 export const routes: Routes = [
     {
@@ -49,6 +51,15 @@ export const routes: Routes = [
             {
                 path: 'profile',
                 component: ProfileComponent
+            },
+
+            {
+                path: 'update-user/:username',
+                component: UpdateUserComponent
+            },
+            {
+                path: 'update-password/:username',
+                component: UpdatePasswordComponent
             },
             {
                 path: 'categories',
@@ -106,6 +117,21 @@ export const routes: Routes = [
     {
         path: 'start/:qid',
         component: StartComponent,
+        canActivate: [normalGuard]
+    },
+    {
+        path: 'user-profile',
+        component: ProfileComponent,
+        canActivate: [normalGuard]
+    },
+    {
+        path: 'update-user/:username',
+        component: UpdateUserComponent,
+        canActivate: [normalGuard]
+    },
+    {
+        path: 'update-password/:username',
+        component: UpdatePasswordComponent,
         canActivate: [normalGuard]
     }
 ];
