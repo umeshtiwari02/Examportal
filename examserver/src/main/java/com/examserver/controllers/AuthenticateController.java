@@ -4,6 +4,7 @@ import com.examserver.config.JwtUtil;
 import com.examserver.models.JwtRequest;
 import com.examserver.models.JwtResponse;
 import com.examserver.models.User;
+import com.examserver.repositories.UserRepository;
 import com.examserver.services.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -22,6 +24,12 @@ public class AuthenticateController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -61,5 +69,21 @@ public class AuthenticateController {
         }
         User user = (User) this.userDetailsService.loadUserByUsername(principal.getName());
         return ResponseEntity.ok(user);
+    }
+
+    // verifying password
+    @PutMapping("/verify-password/{oldPassword}")
+    public boolean verifyPassword(@PathVariable String oldPassword, @RequestBody User user) {
+        return bCryptPasswordEncoder.matches(oldPassword, user.getPassword());
+    }
+
+    // update-password
+    @PutMapping("/update-password/{newPassword}")
+    public void updatePassword(@PathVariable String newPassword, @RequestBody User user) {
+        String newBcryptPassword = bCryptPasswordEncoder.encode(newPassword);
+
+        user.setPassword(newBcryptPassword);
+
+        userRepository.save(user);
     }
 }

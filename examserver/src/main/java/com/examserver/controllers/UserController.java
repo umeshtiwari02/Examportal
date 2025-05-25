@@ -59,11 +59,11 @@ public class UserController {
         this.userService.deleteUser(userId);
     }
 
-    // update user by username
+    // update user by userId
     @PutMapping("/{userId}")
-    public User updateUser(@PathVariable Long userId, @RequestBody User user)
+    public User updateUser(@RequestBody User user)
     {
-        return this.userService.updateUser(userId, user);
+        return this.userService.updateUser(user);
     }
 
 }

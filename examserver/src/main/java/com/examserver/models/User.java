@@ -1,16 +1,17 @@
 package com.examserver.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
+@JsonIgnoreProperties({"accountNonExpired", "accountNonLocked", "credentialsNonExpired"})
 public class User implements UserDetails {
 
     @Id
@@ -78,16 +79,24 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-
-        Set<Authority> set = new HashSet<>();
-
+        Set<Authority> authorities = new HashSet<>();
         this.userRoles.forEach(userRole -> {
-            set.add(new Authority(userRole.getRole().getRoleName()));
+            authorities.add(new Authority(userRole.getRole().getRoleName()));
         });
+        return authorities;
+    }
 
-        return set;
+    @JsonProperty("authorities")
+    public List<Map<String, String>> getJsonAuthorities() {
+        List<Map<String, String>> authList = new ArrayList<>();
+        this.userRoles.forEach(userRole -> {
+            Map<String, String> authMap = new HashMap<>();
+            authMap.put("authority", userRole.getRole().getRoleName());
+            authList.add(authMap);
+        });
+        return authList;
     }
 
     public String getPassword() {
